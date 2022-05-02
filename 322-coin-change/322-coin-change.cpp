@@ -31,7 +31,7 @@ public:
                 }
             }
         }
-        if(dp[n][amount]>10000){
+        if(dp[n][amount]==INT_MAX-1){
             return -1;
         }
         return dp[n][amount];
