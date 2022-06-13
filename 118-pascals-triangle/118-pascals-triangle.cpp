@@ -5,18 +5,16 @@ public:
         if(numRows==0){
             return ans;
         }
-        
         for(int i=0;i<numRows;i++){
-            vector<int> dp(i+1);
-            dp[0]=1;
-            dp[i]=1;
+            vector<int> v(i+1);
+            v[0] = 1;
+            v[i] = 1;
             int k =1;
             while(k<i){
-                dp[k] = ans[i-1][k-1]+ans[i-1][k];
+                v[k] = ans[i-1][k-1] + ans[i-1][k];
                 k++;
             }
-            
-    ans[i]=dp;
+            ans[i]=v;
         }
         return ans;
     }
