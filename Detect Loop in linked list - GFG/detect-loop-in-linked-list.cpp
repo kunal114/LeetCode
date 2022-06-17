@@ -50,16 +50,17 @@ class Solution
     {
         // your code here
         if(head==NULL){
-            return false;
+            return  false;
         }
-        unordered_map<Node*,int> mp;
-        Node *temp= head;
-        while(temp!=NULL){
-            if(mp[temp]){
+        Node *slow = head;
+        Node *fast = head;
+        
+        while(fast!=NULL and fast->next!=NULL){
+            slow = slow->next;
+            fast = fast->next->next;
+            if(fast==slow){
                 return true;
             }
-            mp[temp]=1;
-            temp=temp->next;
         }
         return false;
     }
