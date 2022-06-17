@@ -37,18 +37,14 @@ class Solution
     {
         // code here
         // return head of reversed list
-        Node *prev = NULL;
-        Node *curr = head;
-        Node *nxt =  NULL;
-        
-        while(curr!=NULL){
-            nxt = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nxt;
+        //Recursive solution
+        if(head==NULL || head->next==NULL){
+            return head;
         }
-        
-        return prev;
+        Node *new_head = reverseList(head->next);
+        head->next->next = head;
+        head->next=NULL;
+        return new_head;
     }
     
 };
