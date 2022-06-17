@@ -16,7 +16,7 @@ public:
         ListNode *nextt;
         
         while(current!=NULL){
-            nextt = nextt->next;
+            nextt = current->next;
             current->next = prev;
             prev = current;
             current = nextt;
