@@ -81,22 +81,17 @@ class Solution
     {
         // code here
         // just remove the loop without losing any nodes
-        unordered_map<Node*, int> node_map;
-    // pointer to last node
-    Node* last = NULL;
-    while (head != NULL) {
-        // if node not present in the map, insert it in the map
-        if (node_map.find(head) == node_map.end()) {
-            node_map[head]++;
-            last = head;
-            head = head->next;
+        unordered_set<Node*> s;
+        Node *temp = head;
+        while(temp!=NULL){
+            if(s.find(temp)==s.end()){
+                s.insert(temp);
+            }
+            if(s.find(temp->next)!=s.end()){
+                temp->next= NULL;
+            }
+            temp=temp->next;
         }
-        // if present, it is a cycle, make the last node's next pointer NULL
-        else {
-            last->next = NULL;
-            break;
-        }
-    }
     }
 };
 
