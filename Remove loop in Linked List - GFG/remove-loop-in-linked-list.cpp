@@ -72,7 +72,7 @@ struct Node
 };
 
 */
-#include<bits/stdc++.h>
+
 class Solution
 {
     public:
@@ -81,17 +81,30 @@ class Solution
     {
         // code here
         // just remove the loop without losing any nodes
-        unordered_set<Node*> s;
-        Node *temp = head;
-        while(temp!=NULL){
-            if(s.find(temp)==s.end()){
-                s.insert(temp);
+        Node *slow=head,*fast=head;
+        while(fast!=NULL and fast->next!=NULL and slow!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
+                break;
             }
-            if(s.find(temp->next)!=s.end()){
-                temp->next= NULL;
-            }
-            temp=temp->next;
         }
+        if(slow==head){
+            while(fast->next!=slow){
+                fast=fast->next;
+            }
+            fast->next=NULL;
+            return;
+        }
+        if(slow==fast){
+            slow= head;
+            while(slow->next!=fast->next){
+                slow=slow->next;
+                fast=fast->next;
+            }
+            fast->next=NULL;
+        }
+        return;
     }
 };
 
