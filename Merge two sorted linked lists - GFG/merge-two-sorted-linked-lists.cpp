@@ -65,53 +65,23 @@ int main()
     return 0;
 }
 // } Driver Code Ends
-
-
- 
-
-/* Link list Node
-struct Node {
-  int data;
-  struct Node *next;
-  
-  Node(int x) {
-    data = x;
-    next = NULL;
-  }
-};
-*/
-//Function to merge two sorted linked list.
 Node* sortedMerge(Node* head1, Node* head2)  
 {  
     // code here
     Node *l1=head1,*l2=head2;
     if(l1 == NULL) return l2; 
-
-        // when list2 is empty then our output 
-        // will be same as list1
-        if(l2 == NULL) return l1;
-
-        // pointing l1 and l2 to smallest and greatest one
+    if(l2 == NULL) return l1;
         if(l1->data > l2->data) std::swap(l1,l2);
-
-        // act as head of resultant merged list
         Node* res = l1;
-
         while(l1 != NULL && l2 != NULL) {
- 
             Node* temp = NULL;
-
             while(l1 != NULL && l1->data <= l2->data) {
 
-                temp = l1;//storing last sorted node  
+                temp = l1; 
                 l1 = l1->next;
             }
-
-            // link previous sorted node with 
-            // next larger node in list2
             temp->next = l2;
             std::swap(l1,l2);
         }
-
         return res;
 }  
