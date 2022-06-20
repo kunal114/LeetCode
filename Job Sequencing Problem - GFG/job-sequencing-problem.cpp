@@ -39,6 +39,7 @@ class Solution
         bool slot[n]={0};
                 
         for(int i=0;i<n;i++){
+            //min(n,arr[i].dead-1) is considered as some deadline can be greater than no of slots available
             for(int j=min(n,arr[i].dead-1);j>=0;j--){
                 if(slot[j] == false){
                     pro+=arr[i].profit;
