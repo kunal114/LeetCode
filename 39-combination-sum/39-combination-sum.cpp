@@ -1,26 +1,28 @@
 class Solution {
 public:
-    void recursion(vector<int> arr,int i,int curr,vector<int> comb,vector<vector<int>> &ans){
+    void rec(vector<int> arr,int i,int target,vector<int> v,vector<vector<int>> &ans){
+        //Base case
         if(i==arr.size()){
-            if(curr==0){
-                ans.push_back(comb);
+            if(target==0){
+                ans.push_back(v);
                 return;
             }
             return;
         }
-        if(arr[i]<=curr){
-            comb.push_back(arr[i]);
-            recursion(arr,i,curr-arr[i],comb,ans);
-            comb.pop_back();
-        }
         
-        recursion(arr,i+1,curr,comb,ans);
+        //Rec case
+        if(arr[i]<=target){
+            v.push_back(arr[i]);
+            rec(arr,i,target-arr[i],v,ans);
+            v.pop_back();
+        }
+        rec(arr,i+1,target,v,ans);
+        
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>> ans;
-        vector<int> comb;
-        int curr=target,i=0;
-        recursion(candidates,i,curr,comb,ans);
+        vector<int> v;
+        rec(candidates,0,target,v,ans);
         return ans;
     }
 };
