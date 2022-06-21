@@ -14,25 +14,28 @@ vector<string> AllParenthesis(int n) ;
 class Solution
 {
     public:
-    void recursion(int open,int close,int i,int n,string s,vector<string> &ans){
+    void rec(int n,int i,int open,int close,string s,vector<string> &ans){
         if(i==2*n){
             ans.push_back(s);
-        
             return;
         }
-        if(open<n){
-            recursion(open+1,close,i+1,n,s+'(',ans);
+        
+        //if open bracket are more it means we can add a closing bracket
+        if(open>close){
+            rec(n,i+1,open,close+1,s+')',ans);
         }
-        if(close<open){
-            recursion(open,close+1,i+1,n,s+')',ans);
+        //if open brackets are less than n i.e. open brackets are available so we can add it
+        if(open<n){
+            rec(n,i+1,open+1,close,s+'(',ans);
         }
     }
     vector<string> AllParenthesis(int n) 
     {
-        // Your code goes here 
+        // Your code goes here
         vector<string> ans;
         string s="";
-        recursion(0,0,0,n,s,ans);
+        int open=0,close=0,i=0;
+        rec(n,i,open,close,s,ans);
         return ans;
     }
 };
