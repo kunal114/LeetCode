@@ -17,7 +17,7 @@ class Solution
     void recursion(int open,int close,int i,int n,string s,vector<string> &ans){
         if(i==2*n){
             ans.push_back(s);
-            s="";
+        
             return;
         }
         if(open<n){
