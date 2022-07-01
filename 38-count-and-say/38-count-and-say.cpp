@@ -9,7 +9,7 @@ public:
         for(int i=3;i<=n;i++){
             string temp="";
             s=s+'&';//to consider last element of the string in the count
-            int cnt=1;
+            int cnt=1;//j-1 th element included
             
             for(int j=1;j<s.size();j++){
                 if(s[j]==s[j-1]){
