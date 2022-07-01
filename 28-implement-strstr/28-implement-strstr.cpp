@@ -10,7 +10,8 @@ public:
         }
         return -1;
     }
-    vector<int> computeLPSArray(string needle) {
+    
+    /*vector<int> computeLPSArray(string needle) {
         int m = needle.size();
         vector<int> lps(m);
         lps[0] = 0;
@@ -58,7 +59,7 @@ public:
         }
 
         return -1;
-    }
+    }*/
     int strStr(string haystack, string needle) {
         
         int ans = simple(haystack, needle);
