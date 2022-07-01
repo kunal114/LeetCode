@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int simple(string s,string pat){
+    /*int simple(string s,string pat){
         int m = pat.size();
         int n = s.size();
         for(int i=0;i<n-m+1;i++){
@@ -10,7 +10,7 @@ public:
         }
         return -1;
     }
-    
+    */
     /*vector<int> computeLPSArray(string needle) {
         int m = needle.size();
         vector<int> lps(m);
@@ -60,12 +60,40 @@ public:
 
         return -1;
     }*/
+    int Z_algo(string s,string pat){
+        int m = pat.size();
+        int n = s.size();
+        int ans;
+        string str = pat+"#"+s;
+        vector<int> z;
+        
+        int i=0;
+        while(i<str.size()){
+            if(i<=m) z.push_back(0);
+            else{
+                int left = 0,right = 0;
+                if(str[left]==str[i]){
+                    right=i;
+                    while(str[left]==str[right] and right<str.length()){
+                        left++;
+                        right++; 
+                    }
+                }
+                z.push_back(left);                
+            }
+            i++;
+        }
+        for(int i=0;i<z.size();i++){
+            if(z[i]==m) return i-m-1;
+        }
+        return -1;
+    }
     int strStr(string haystack, string needle) {
         
-        int ans = simple(haystack, needle);
+        // int ans = simple(haystack, needle);
         // int ans = kmp(haystack, needle);        
         // int ans = RabinKarp(string haystack, string needle);
-        // int ans = Z_algo(string haystack, string needle);
+        int ans = Z_algo(haystack,needle);
         
         return ans;
 
