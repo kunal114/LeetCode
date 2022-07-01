@@ -4,7 +4,7 @@ public:
         
         int i=0,j=0;
         int n1=version1.length(),n2=version2.length();
-        int num1,num2;
+        int num1,num2;//to fetch each no. before and after '.'
         
         while(i<n1 || j<n2){
             num1=0;
