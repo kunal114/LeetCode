@@ -1,5 +1,15 @@
 class Solution {
 public:
+    int simple(string s,string pat){
+        int m = pat.size();
+        int n = s.size();
+        for(int i=0;i<n-m+1;i++){
+            if(pat==s.substr(i,m)){
+                return i;
+            }
+        }
+        return -1;
+    }
     vector<int> computeLPSArray(string needle) {
         int m = needle.size();
         vector<int> lps(m);
@@ -51,7 +61,8 @@ public:
     }
     int strStr(string haystack, string needle) {
         
-        int ans = kmp(haystack, needle);        
+        int ans = simple(haystack, needle);
+        // int ans = kmp(haystack, needle);        
         // int ans = RabinKarp(string haystack, string needle);
         // int ans = Z_algo(string haystack, string needle);
         
