@@ -11,7 +11,7 @@
  */
 class Solution {
 public:
-    TreeNode* insert(TreeNode* root,int x){
+    TreeNode* insert(TreeNode* &root,int x){
         if(root==NULL){
             return new TreeNode(x);
         }
