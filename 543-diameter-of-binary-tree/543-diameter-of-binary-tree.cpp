@@ -18,16 +18,18 @@ public:
     }
 private:
     int height(TreeNode* node, int& diameter) {
-
+        //Base
         if (!node) {
             return 0;
         }
-
+        //Hypothesis
         int lh = height(node->left, diameter);
         int rh = height(node->right, diameter);
-
-        diameter = max(diameter, lh + rh);
-
-        return 1 + max(lh, rh);
+        //Induction
+        int temp = max(lh,rh)+1;
+        int ans = lh+rh;
+        diameter = max(diameter,ans);
+        
+        return temp;
     }
 };
