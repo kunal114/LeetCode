@@ -11,19 +11,29 @@
  */
 class Solution {
 public:
-    vector<int> traverse(TreeNode* root, int& ans) {
-        if (!root) return {INT_MAX, INT_MIN, 0};
-        vector<int> left(traverse(root->left, ans)), right(traverse(root->right, ans));
-		// check if a tree is BST
-        if (left.empty() || right.empty() || root->val <= left[1] || root->val >= right[0]) return {};
-		// if BST, update ans
-        int curr_sum = left[2] + right[2] + root->val;
-        ans = max(ans, curr_sum);
-        return {min(left[0], root->val), max(right[1], root->val), curr_sum};
+    struct S {
+        bool isBST;
+        int minVal, maxVal, sum;
+    };
+    
+    S helper(TreeNode *node, int &res) {
+        if (!node) {
+            return { true, INT_MAX, INT_MIN, 0 };
+        }
+        S l = helper(node->left, res);
+        S r = helper(node->right, res);
+        if (l.isBST && r.isBST && l.maxVal < node->val && r.minVal > node->val) {
+            int sum = l.sum + r.sum + node->val;
+            res = max(res, sum);
+            return { true, min(l.minVal, node->val), max(r.maxVal, node->val), sum };
+        } else {
+            return { false, 0, 0, 0 };
+        }
     }
+    
     int maxSumBST(TreeNode* root) {
-        int ans(0);
-        traverse(root, ans);
-        return max(0, ans);
+        int res = 0;
+        helper(root, res);
+        return res;
     }
 };
