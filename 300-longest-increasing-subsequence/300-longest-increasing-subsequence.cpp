@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int lengthOfLIS(vector<int>& nums) {
+    int brute(vector<int> &nums){
         int n = nums.size();
         int dp[n];
         
@@ -21,4 +21,10 @@ public:
         
         return ans;
     }
-};
+    int lengthOfLIS(vector<int>& nums){
+        
+        return brute(nums);
+        
+        
+    }
+}; 
