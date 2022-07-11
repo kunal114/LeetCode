@@ -11,8 +11,7 @@
  */
 class Solution {
 public:
-    void levelorder(TreeNode* root,vector<int> &ans){
-        
+    void rhs(TreeNode* root,vector<int> &ans){
         if(root==NULL) return;
         queue<TreeNode*> q;
         q.push(root);
@@ -20,7 +19,7 @@ public:
         while(!q.empty()){
             int k = q.size();
             for(int i=1;i<=k;i++){
-                TreeNode* curr=q.front();
+                TreeNode *curr = q.front();
                 q.pop();
                 if(i==k){
                     ans.push_back(curr->val);
@@ -32,7 +31,7 @@ public:
     }
     vector<int> rightSideView(TreeNode* root) {
         vector<int> ans;
-        levelorder(root,ans);
+        rhs(root,ans);
         return ans;
     }
 };
