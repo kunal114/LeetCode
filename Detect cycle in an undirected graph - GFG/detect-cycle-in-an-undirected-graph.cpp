@@ -39,6 +39,7 @@ class Solution {
                 return true;
             }
         }
+        return false;
     }
     // Function to detect cycle in an undirected graph.
     bool isCycle(int V, vector<int> adj[]) {
