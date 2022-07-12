@@ -15,10 +15,33 @@ class Solution
 	            dfs(adj,vis,ans,it);
 	        }
 	    }
+	   // s.push(node);
 	    ans.insert(ans.begin(),node);
-	} 
-	void bfs(vector<int> adj[],vector<bool> &vis,stack<int> &s,int node){
+	}
+	
+	void cal_indegree(vector<int> adj[],int V,vector<int> &indegree){
+	    for(int i=0;i<V;i++){
+	        for(auto it:adj[i]){
+	            indegree[it]++;
+	        }
+	    }
+	}
+	void bfs(vector<int> adj[],vector<int> &indegree,int V,vector<int> &ans){
+	    queue<int> q;
+	    for(int i=0;i<V;i++){
+	        if(indegree[i]==0) q.push(i);
+	    }
 	    
+	    while(!q.empty()){
+	        int node = q.front();
+	        q.pop();
+	        ans.push_back(node);
+	        
+	        for(auto it:adj[node]){
+	            indegree[it]--;
+	            if(indegree[it]==0) q.push(it);
+	        }
+	    }
 	}
 	//Function to return list containing vertices in Topological order. 
 	vector<int> topoSort(int V, vector<int> adj[]) 
@@ -26,13 +49,18 @@ class Solution
 	    // code here
 	    vector<int> ans;
 	    vector<bool> vis(V,0);
-	    stack<int> s;
+	   // stack<int> s;
+	   
+	    vector<int> indegree(V,0);
 	    
 	    for(int i=0;i<V;i++){
-	        if(!vis[i]) 
-	            dfs(adj,vis,ans,i);
-	           // bfs(adj,vis,s,i);
+	       // if(!vis[i]) 
+	           // dfs(adj,vis,s,i);
+	           // dfs(adj,vis,ans,i);
+	           
 	    }
+	   cal_indegree(adj,V,indegree);
+	   bfs(adj,indegree,V,ans);
 	    
 	   // while(!s.empty()){
 	   //     ans.push_back(s.top());
