@@ -9,9 +9,9 @@ public:
         }
         
         for(int i=0;i<4;i++){
-            if(sides[i]+matchsticks[ind]>side) continue; //dont add
+            if(sides[i]+matchsticks[ind]>side) continue; //dont add and backtrack(includes greater vaala case as well individual stick greater than side vala case)
             
-            //OPTIMIZATION
+            //OPTIMIZATION(dont start adding stick to side jo pahle se hi target side ke equal hai)
             int j=i-1;
             while(j>=0){
                 if(sides[j]==sides[i]) break;
@@ -37,7 +37,7 @@ public:
         int side = sum/4;
         
         vector<int> sides(4,0);
-        sort(matchsticks.begin(),matchsticks.end(),greater<int>());
+        sort(matchsticks.begin(),matchsticks.end(),greater<int>());//optimization
         
         return dfs(matchsticks,sides,side,0);
     }
