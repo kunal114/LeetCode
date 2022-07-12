@@ -11,12 +11,12 @@ public:
         
         for(int i=0;i<4;i++){
             if(sides[i]+matchsticks[ind]>side) continue; //dont add
-            int j=i-1;
-            while(j>=0){
-                if(sides[j]==sides[i]) break;
-                j--;
-            }
-            if(j!=-1) continue;
+            // int j=i-1;
+            // while(j>=0){
+            //     if(sides[j]==sides[i]) break;
+            //     j--;
+            // }
+            // if(j!=-1) continue;
             sides[i]+=matchsticks[ind];
             if(dfs(matchsticks,sides,side,ind+1)) return true;
             sides[i]-=matchsticks[ind];
