@@ -22,9 +22,9 @@ class Solution {
         vector<bool> vis(V,0);
         vector<int> ans;
         
-        for(int i=0;i<V;i++) //for unconnected graph
-            if(!vis[i]){
-                dfs(adj,vis,ans,i);
+        // for(int i=0;i<V;i++) //for unconnected graph
+            if(!vis[0]){
+                dfs(adj,vis,ans,0);
             }
             
         return ans;
