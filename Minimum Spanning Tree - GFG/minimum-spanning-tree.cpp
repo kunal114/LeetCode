@@ -10,12 +10,8 @@ class Solution
 	public:
 	//Function to find sum of weights of edges of the Minimum Spanning Tree.
 	
-// 	prims
-//  kruskals
-    int spanningTree(int V, vector<vector<int>> adj[])
-    {
-        // code here 
-        vector<bool> vis(V,0);
+	int prims(int V, vector<vector<int>> adj[]){
+	    vector<bool> vis(V,0);
         priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq;
         
         pq.push({0,0});//weight,vertex
@@ -40,6 +36,13 @@ class Solution
             }
         }
         return ans;
+	}
+//  kruskals
+    int spanningTree(int V, vector<vector<int>> adj[])
+    {
+        // code here 
+        return prims(V,adj);
+        ret
     }
 };
 
