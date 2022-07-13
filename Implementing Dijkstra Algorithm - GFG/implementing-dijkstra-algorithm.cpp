@@ -11,7 +11,7 @@ class Solution
     vector <int> dijkstra(int V, vector<vector<int>> adj[], int S)
     {
         // Code here
-        priority_queue<pair<int,int>> pq; //dis,vertex
+        priority_queue<pair<int,int>,vector<pair<int,int>>,greater<pair<int,int>>> pq; //dis,vertex(max heap)
         vector<int> dis(V,INT_MAX);
         
         dis[S]=0;
@@ -28,7 +28,7 @@ class Solution
                 
                 if(dis[neighbor] > weight+dis[curr]){
                     dis[neighbor] = weight+dis[curr];
-                    pq.push({-1*dis[neighbor],neighbor}); //*-1 will help to implement max heap(== vis array)
+                    pq.push({dis[neighbor],neighbor}); //*-1 will help to ignore vis node(== vis array)
                 }
             }
         }
